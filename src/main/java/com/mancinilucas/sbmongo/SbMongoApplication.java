@@ -10,5 +10,4 @@ public class SbMongoApplication {
 		SpringApplication.run(SbMongoApplication.class, args);
 	}
 
-
 }
