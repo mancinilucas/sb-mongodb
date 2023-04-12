@@ -1,6 +1,7 @@
 package com.mancinilucas.sbmongo.services;
 
 import com.mancinilucas.sbmongo.domain.User;
+import com.mancinilucas.sbmongo.dto.UserDTO;
 import com.mancinilucas.sbmongo.repository.UserRepository;
 import com.mancinilucas.sbmongo.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,5 +23,13 @@ public class UserService {
     public User findById(String id){
         Optional<User> obj = userRepository.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
+    }
+
+    public User insert(User obj){
+        return userRepository.insert(obj);
+    }
+
+    public User fromDTO(UserDTO objDto){
+        return new User(objDto.getId(), objDto.getName(), objDto.getEmail());
     }
 }
