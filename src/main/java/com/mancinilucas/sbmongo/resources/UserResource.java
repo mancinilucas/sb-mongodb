@@ -1,5 +1,6 @@
 package com.mancinilucas.sbmongo.resources;
 
+import com.mancinilucas.sbmongo.domain.Post;
 import com.mancinilucas.sbmongo.domain.User;
 import com.mancinilucas.sbmongo.dto.UserDTO;
 import com.mancinilucas.sbmongo.services.UserService;
@@ -52,5 +53,11 @@ public class UserResource {
         obj.setId(id);
         obj = userService.update(obj);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping(value = "/{id}/posts")
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id){
+        User obj = userService.findById(id);
+        return ResponseEntity.ok().body(obj.getPosts());
     }
 }
