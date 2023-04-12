@@ -3,6 +3,7 @@ package com.mancinilucas.sbmongo.config;
 import com.mancinilucas.sbmongo.domain.Post;
 import com.mancinilucas.sbmongo.domain.User;
 import com.mancinilucas.sbmongo.dto.AuthorDTO;
+import com.mancinilucas.sbmongo.dto.CommentDTO;
 import com.mancinilucas.sbmongo.repository.PostRepository;
 import com.mancinilucas.sbmongo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,13 @@ public class Instantiation implements CommandLineRunner {
 
         Post p1 = new Post(null, sdf.parse("21/03/2023"), "Partiu Maruin", "Vou ali ver Ddog!", new AuthorDTO(maria));
         Post p2 = new Post(null, sdf.parse("10/04/2023"), "Partiu Capelinha", "Vou ali visitar Aline!", new AuthorDTO(maria));
+
+        CommentDTO c1 = new CommentDTO("Boa viagem!", sdf.parse("21/03/2023"), new AuthorDTO(alex));
+        CommentDTO c2 = new CommentDTO("Aproveita pra ver Vitória!", sdf.parse("21/03/2023"), new AuthorDTO(bob));
+        CommentDTO c3 = new CommentDTO("Tenha um ótimo dia!", sdf.parse("21/03/2023"), new AuthorDTO(alex));
+
+        p1.getComments().addAll(Arrays.asList(c1, c2));
+        p2.getComments().addAll(Arrays.asList(c3));
 
         postRepository.saveAll(Arrays.asList(p1,p2));
 
